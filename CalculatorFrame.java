@@ -166,8 +166,10 @@ public class CalculatorFrame extends JFrame
          * 
          * The action listener completes the 3 above tasks
          */
-        add.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        add.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e) 
+            {
             	// TODO: change the opSign, clear the error message and compute result.
             	opSign.setText("+  "); 
             	computeResult.getText();
@@ -176,8 +178,10 @@ public class CalculatorFrame extends JFrame
             } 
         });
         
-        multiply.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        multiply.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e) 
+            {
             	// TODO: change the opSign, clear the error message and compute result.
             	opSign.setText("*  "); 
             	computeResult.getText();
@@ -185,8 +189,10 @@ public class CalculatorFrame extends JFrame
             }
         });
         
-        divide.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        divide.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e) 
+            {
             	// TODO: change the opSign, clear the error message and compute result.
             	opSign.setText("/  "); 
             	computeResult.getText();
@@ -194,14 +200,17 @@ public class CalculatorFrame extends JFrame
             }
         });
         
-        equality.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        equality.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e) 
+            {
             	// TODO: change the opSign, clear the error message and compute result.
             	opSign.setText("==  "); 
             	computeResult.getText();
             	errorMessage.setText("");
             }
-        });
+        }
+        );
         
         
         /*
@@ -214,8 +223,10 @@ public class CalculatorFrame extends JFrame
          * sent to it when the slider is changed. The method called is stateChanged
          * instead of actionPerformed for this listener.
          */
-        slider.addChangeListener(new ChangeListener() {
-        	public void stateChanged(ChangeEvent e) {
+        slider.addChangeListener(new ChangeListener() 
+        {
+        	public void stateChanged(ChangeEvent e) 
+        	{
         		// TODO: change the text in the first JTextField. Clear error and result
         		errorMessage.setText("");
         		computeResult.setText("");
@@ -245,9 +256,12 @@ public class CalculatorFrame extends JFrame
          * You should reset errorMessage when the computation succeeds.
          * You should reset computeResult when you encounter an error.
          */
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	try {
+        button.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e) 
+            {
+            	try 
+            	{
                     /*
                      * TODO: determine which radio button is selected (add, multiply,
                      * divide, equality).
@@ -259,27 +273,33 @@ public class CalculatorFrame extends JFrame
                      * a String to the computeResult text field.
                      */
                     
-            		String button = e.getActionCommand();
+            		JRadioButton button = (JRadioButton) e.getSource();
             		
-            		if (button.equals("add"))
+            		if (button == add)
             		{
-            			String value = null;
+            			int value1 = slider.getValue();
+            			int value2 = Integer.parseInt(secondBox.getText());
+            			String value = "" + (value1+value2);
             			computeResult.setText(value);
             		}
             		
-            		else if (button.equals("divide"))
+            		else if (button == divide)
             		{
-            			String value = null;
+            			int value1 = slider.getValue();
+            			int value2 = Integer.parseInt(secondBox.getText());
+            			String value = "" + (value1/value2);
             			computeResult.setText(value);
             		}
             		
-            		else if (button.equals("multiply"))
+            		else if (button == multiply)
             		{
-            			String value = null;
+            			int value1 = slider.getValue();
+            			int value2 = Integer.parseInt(secondBox.getText());
+            			String value = "" + (value1*value2);
             			computeResult.setText(value);
             		}
             		
-            		else if (button.equals("equality"))
+            		else if (button == equality)
             		{
             			String value = "" + (firstBox.getText() == secondBox.getText());
             			computeResult.setText(value);
@@ -291,21 +311,19 @@ public class CalculatorFrame extends JFrame
                 // Check for errors:
                 // (1) A number entered is not an integer -> NumberFormatException
                 // (2) Divide by zero -> ArithmeticException
-                catch (NumberFormatException error) {
-                	// TODO: display the error message "ERROR: Please enter a valid integer."
-                    // in the error message text field.
-                	
-                	// TODO: Clear computeResult
+                catch (NumberFormatException error) 
+            	{
+
+                	errorMessage.setText("ERROR: Please enter a valid integer.");
+
                 	computeResult.setText("");
                 }
-                catch (ArithmeticException error) {
-                	// TODO: display the error message "ERROR: Tried to divide by 0."
-                    // in the error message text field.
-                	if (secondBox.getText().equals("0"))
-                	{
-                		errorMessage.setText("ERROR: Tried to divide by 0.");
-                	}
-                	// TODO: Clear computeResult
+            	
+                catch (ArithmeticException error) 
+            	{
+              
+                	errorMessage.setText("ERROR: Tried to divide by 0.");
+
                 	computeResult.setText("");
                 }
             }
