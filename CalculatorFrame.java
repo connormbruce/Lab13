@@ -219,7 +219,8 @@ public class CalculatorFrame extends JFrame
         		// TODO: change the text in the first JTextField. Clear error and result
         		errorMessage.setText("");
         		computeResult.setText("");
-        		firstBox.setText((String) slider.getValue());
+        		String value = "" + slider.getValue();
+        		firstBox.setText(value);
         		
             }
         });
