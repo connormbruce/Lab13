@@ -118,31 +118,28 @@ public class CalculatorFrame extends JFrame
         /****************************************************************/
 
         // Here we are adding elements into panels. The first panel has all elements added into it.
-        // TODO: finish adding elements into the panel. Reference the writeup to see what should go where.
         panel1.add(firstBox);
         panel1.add(opSign);
         panel1.add(secondBox); 
         panel1.add(equalsSign);
         panel1.add(computeResult);
         
-        // TODO: add the operations to the lower panel
-        
+        //Error message added to panel
         panel2.add(errorMessage);
         
+        //Calculate button added
         panel3.add(button);
         
+        //Symbols added
         panel4.add(add);
         panel4.add(multiply);
         panel4.add(divide);
         panel4.add(equality);
         
-        // TODO: add the slider to panel0
-
+        //Slider added
         panel0.add(slider);
         
-        // TODO: add the panels into the frame. Remember that this class is a JFrame, so you should simply call
-        // the add method of this object that is being constructed.
-       
+        //Panels added to frame       
         add(panel0);
         add(panel1);
         add(panel2);
@@ -166,15 +163,17 @@ public class CalculatorFrame extends JFrame
          * ActionListeners wait for the program to send them an event. In this case, an event
          * occurs when we press a button. Once that event happens, the code inside the actionPerformed
          * method is executed. Thus, we are coding here what the program should do when a button is
-         * pressed. We add action listners to each of the radio buttons.
+         * pressed. We add action listeners to each of the radio buttons.
          * 
          * The action listener completes the 3 above tasks
          */
+        
+        //Adds an action to the add button
         add.addActionListener(new ActionListener() 
         {
             public void actionPerformed(ActionEvent e) 
             {
-            	// TODO: change the opSign, clear the error message and compute result.
+            	// Change the opSign, clear the error message and compute result on every click.
             	opSign.setText("+  "); 
             	computeResult.getText();
             	errorMessage.setText("");
@@ -182,33 +181,36 @@ public class CalculatorFrame extends JFrame
             } 
         });
         
+        //Adds an action to the multiply button
         multiply.addActionListener(new ActionListener() 
         {
             public void actionPerformed(ActionEvent e) 
             {
-            	// TODO: change the opSign, clear the error message and compute result.
+            	// Change the opSign, clear the error message and compute result on every click.
             	opSign.setText("*  "); 
             	computeResult.getText();
             	errorMessage.setText("");
             }
         });
         
+        //Adds an action to the divide button
         divide.addActionListener(new ActionListener() 
         {
             public void actionPerformed(ActionEvent e) 
             {
-            	// TODO: change the opSign, clear the error message and compute result.
+            	// Change the opSign, clear the error message and compute result on every click.
             	opSign.setText("/  "); 
             	computeResult.getText();
             	errorMessage.setText("");
             }
         });
         
+        //Adds an action to the equality button
         equality.addActionListener(new ActionListener() 
         {
             public void actionPerformed(ActionEvent e) 
             {
-            	// TODO: change the opSign, clear the error message and compute result.
+            	// Change the opSign, clear the error message and compute result on every click.
             	opSign.setText("==  "); 
             	computeResult.getText();
             	errorMessage.setText("");
@@ -231,9 +233,10 @@ public class CalculatorFrame extends JFrame
         {
         	public void stateChanged(ChangeEvent e) 
         	{
-        		// TODO: change the text in the first JTextField. Clear error and result
+        		// Changed the text in the first JTextField. Clear error and result
         		errorMessage.setText("");
         		computeResult.setText("");
+        		//Sets the slider value to the number value
         		String value = "" + slider.getValue();
         		firstBox.setText(value);
         		
@@ -260,50 +263,65 @@ public class CalculatorFrame extends JFrame
          * You should reset errorMessage when the computation succeeds.
          * You should reset computeResult when you encounter an error.
          */
+        
+        //Makes the button an action button
         button.addActionListener(new ActionListener() 
         {
+        	/**
+        	 * Calculate statistics for desired button
+        	 */
             public void actionPerformed(ActionEvent e) 
             {
+            	/**
+            	 * Calculates statistics for what button is pushed
+            	 */
             	try 
             	{
-                    /*
-                     * TODO: determine which radio button is selected (add, multiply,
-                     * divide, equality).
-                     * 
-                     * Once you know which operation to perform, get the integer values from the
-                     * text of the two input boxes (firstBox and secondBox).
-                     * 
-                     * Finally, perform the operation on the integers and write out the result as
-                     * a String to the computeResult text field.
+                    /**
+                     * Calculate statistics for add values                            		
                      */
-                    
-            		            		
             		if (add.isSelected())
             		{
+            			//Gets both number from the lines
             			int value1 = slider.getValue();
             			int value2 = Integer.parseInt(secondBox.getText());
+            			//Adds them and makes them a string
             			String value = "" + (value1+value2);
             			computeResult.setText(value);
             		}
             		
+            		/**
+            		 * Calculate statistics for divide statistics
+            		 */
             		else if (divide.isSelected())
             		{
+            			//Gets both numbers from the lines
             			int value1 = slider.getValue();
             			int value2 = Integer.parseInt(secondBox.getText());
+            			//Divides them and makes it a string
             			String value = "" + (value1/value2);
             			computeResult.setText(value);
             		}
             		
+            		/**
+            		 * Calculate statistics for multiply statistics 
+            		 */
             		else if (multiply.isSelected())
             		{
+            			//Gets both numbers from the lines
             			int value1 = slider.getValue();
             			int value2 = Integer.parseInt(secondBox.getText());
+            			//Multiples them and makes it a string
             			String value = "" + (value1*value2);
             			computeResult.setText(value);
             		}
             		
+            		/**
+            		 * Calculate statistics for equality statement
+            		 */
             		else if (equality.isSelected())
             		{
+            			//Casts boolean of if the values are equal to string
             			String value = "" + (firstBox.getText().equals(secondBox.getText()));
             			computeResult.setText(value);
             		}
@@ -314,19 +332,24 @@ public class CalculatorFrame extends JFrame
                 // Check for errors:
                 // (1) A number entered is not an integer -> NumberFormatException
                 // (2) Divide by zero -> ArithmeticException
+            	/**
+            	 * Checks for errors
+            	 */
                 catch (NumberFormatException error) 
             	{
-
+                	//Sets error message
                 	errorMessage.setText("ERROR: Please enter a valid integer.");
-
+                	//Clears results
                 	computeResult.setText("");
                 }
-            	
-                catch (ArithmeticException error) 
+            	/**
+            	 * Checks for errors
+            	 */
+            	catch (ArithmeticException error) 
             	{
-              
+                	//Sets error message
                 	errorMessage.setText("ERROR: Tried to divide by 0.");
-
+                	//Clears results
                 	computeResult.setText("");
                 }
             }
