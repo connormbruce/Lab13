@@ -259,6 +259,32 @@ public class CalculatorFrame extends JFrame
                      * a String to the computeResult text field.
                      */
                     
+            		String button = e.getActionCommand();
+            		
+            		if (button.equals("add"))
+            		{
+            			String value = null;
+            			computeResult.setText(value);
+            		}
+            		
+            		else if (button.equals("divide"))
+            		{
+            			String value = null;
+            			computeResult.setText(value);
+            		}
+            		
+            		else if (button.equals("multiply"))
+            		{
+            			String value = null;
+            			computeResult.setText(value);
+            		}
+            		
+            		else if (button.equals("equality"))
+            		{
+            			String value = "" + (firstBox.getText() == secondBox.getText());
+            			computeResult.setText(value);
+            		}
+            		
                     // Clear the error message text field:
                     errorMessage.setText("");
                 }
@@ -268,12 +294,19 @@ public class CalculatorFrame extends JFrame
                 catch (NumberFormatException error) {
                 	// TODO: display the error message "ERROR: Please enter a valid integer."
                     // in the error message text field.
+                	
                 	// TODO: Clear computeResult
+                	computeResult.setText("");
                 }
                 catch (ArithmeticException error) {
                 	// TODO: display the error message "ERROR: Tried to divide by 0."
                     // in the error message text field.
+                	if (secondBox.getText().equals("0"))
+                	{
+                		errorMessage.setText("ERROR: Tried to divide by 0.");
+                	}
                 	// TODO: Clear computeResult
+                	computeResult.setText("");
                 }
             }
         });
