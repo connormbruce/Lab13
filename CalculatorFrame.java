@@ -127,6 +127,10 @@ public class CalculatorFrame extends JFrame
         
         // TODO: add the operations to the lower panel
         
+        panel2.add(errorMessage);
+        
+        panel3.add(button);
+        
         panel4.add(add);
         panel4.add(multiply);
         panel4.add(divide);
@@ -273,9 +277,8 @@ public class CalculatorFrame extends JFrame
                      * a String to the computeResult text field.
                      */
                     
-            		JRadioButton button = (JRadioButton) e.getSource();
-            		
-            		if (button == add)
+            		            		
+            		if (add.isSelected())
             		{
             			int value1 = slider.getValue();
             			int value2 = Integer.parseInt(secondBox.getText());
@@ -283,7 +286,7 @@ public class CalculatorFrame extends JFrame
             			computeResult.setText(value);
             		}
             		
-            		else if (button == divide)
+            		else if (divide.isSelected())
             		{
             			int value1 = slider.getValue();
             			int value2 = Integer.parseInt(secondBox.getText());
@@ -291,7 +294,7 @@ public class CalculatorFrame extends JFrame
             			computeResult.setText(value);
             		}
             		
-            		else if (button == multiply)
+            		else if (multiply.isSelected())
             		{
             			int value1 = slider.getValue();
             			int value2 = Integer.parseInt(secondBox.getText());
@@ -299,9 +302,9 @@ public class CalculatorFrame extends JFrame
             			computeResult.setText(value);
             		}
             		
-            		else if (button == equality)
+            		else if (equality.isSelected())
             		{
-            			String value = "" + (firstBox.getText() == secondBox.getText());
+            			String value = "" + (firstBox.getText().equals(secondBox.getText()));
             			computeResult.setText(value);
             		}
             		
